@@ -1,0 +1,25 @@
+digraph INFRA {
+  node [ color = "black", fillcolor = "#E6E6E6", height =1, style = "filled,bold,rounded", fontname = "Arial" ];
+  "ml-service" [ label = "ml-service
+(KubernetesDeployment)", shape =rectangle, fillcolor = "#B7E0FF" ];
+  "model-storage" [ label = "model-storage
+(PersistentVolumeClaim)", shape =cylinder, fillcolor = "#FFF5CD" ];
+  "model-pv" [ label = "model-pv
+(PersistentVolume)", shape =cylinder, fillcolor = "#FFF5CD" ];
+  "ml-service-hpa" [ label = "ml-service-hpa
+(HorizontalPodAutoscaler)", shape =rectangle ];
+  "ml-service-lb" [ label = "ml-service-lb
+(LoadBalancer)", shape =rectangle, fillcolor = "#E78F81" ];
+  "prometheus" [ label = "prometheus
+(KubernetesDeployment)", shape =rectangle ];
+  "prometheus-lb" [ label = "prometheus-lb
+(LoadBalancer)", shape =rectangle, fillcolor = "#E78F81" ];
+  "prometheus-config" [ label = "prometheus-config
+(ConfigMap)", shape =rectangle ];
+  "ml-service" -> "model-storage";
+  "model-storage" -> "model-pv";
+  "ml-service-hpa" -> "ml-service";
+  "ml-service-lb" -> "ml-service";
+  "prometheus" -> "prometheus-config";
+  "prometheus-lb" -> "prometheus";
+}
